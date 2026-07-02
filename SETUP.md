@@ -66,5 +66,38 @@ export PYTHONUTF8=1 PYTHONIOENCODING=utf-8
 curl -A "Mozilla/5.0" "https://api.stocktwits.com/api/2/streams/symbol/NVDA.json"
 ```
 
+## 6) OpenCLI 기반 채널 (雪球 · Facebook · Instagram · 小红书)
+브라우저 자동화 도구 OpenCLI가 조종하는 **단일 Chrome 프로필**에 각 사이트를 로그인해두면 읽힘.
+Cookie-Editor 대신 `opencli <site> login` 을 쓰는 게 정확 (이미 로그인돼 있으면 즉시 반환).
+```bash
+npm install -g @jackwener/opencli        # 데몬 설치
+# Chrome 웹스토어에서 'OpenCLI' 확장 설치 → 데몬이 그 프로필에 연결됨
+opencli daemon restart && opencli doctor # 연결 확인 (Extension: connected 떠야 함)
+
+opencli xueqiu login                     # 로그인창 열림 (백그라운드 실행 권장)
+opencli xueqiu whoami                    # 로그인 확인
+opencli xueqiu stock SH600519            # 실시간 시세
+opencli xueqiu hot-stock                 # 열문 종목 랭킹
+opencli rednote search "반도체"           # 小红书 검색
+opencli facebook search "..." ; opencli instagram whoami
+```
+> OpenCLI엔 100+ 사이트 어댑터 내장 (bloomberg, sinafinance, weibo, tiktok, binance, coingecko 등).
+> `opencli list` 로 전체 확인.
+
+## 7) GitHub 전체기능
+```bash
+gh auth login          # 본인이 브라우저 인증 (또는 --with-token)
+```
+
+## 채널 요약
+| 채널 | 방식 | 자격증명 |
+|---|---|---|
+| 웹·Exa·YouTube·RSS·V2EX·B站 | 기본 도구 | 불필요 |
+| X / Reddit | twitter-cli / rdt-cli | Cookie-Editor |
+| StockTwits | 공개 JSON API | 불필요 |
+| GitHub | gh CLI | `gh auth login` |
+| 小宇宙(전사) | Groq Whisper | Groq API 키 |
+| 雪球·Facebook·Instagram·小红书 | OpenCLI | Chrome 프로필 로그인 |
+
 ---
-⚠️ 쿠키는 계정 로그인 권한 전체입니다. 계정 정지 위험이 있으니 **부계정 사용 권장**.
+⚠️ 쿠키·로그인은 계정 권한 전체입니다. 계정 정지 위험이 있으니 **부계정 사용 권장**.

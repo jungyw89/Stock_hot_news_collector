@@ -1,0 +1,27 @@
+# ── Secrets / credentials — NEVER commit ─────────────────────────
+# (실제 쿠키는 홈 폴더에 있지만, 실수 방지용 방어막)
+*.env
+.env
+credential.json
+config.yaml
+*cookie*
+*secret*
+*token*
+
+# ── agent-reach: 공개 pip 패키지 + 자체 .git(embedded repo) ────────
+# 새 컴퓨터에선 `pip install agent-reach` 로 대체 (SETUP.md 참고)
+agent-reach/
+
+# ── Python ───────────────────────────────────────────────────────
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# ── 통합 리포트 출력물 (재생성 가능) ──────────────────────────────
+social_*.json
+
+# ── Claude Code 로컬 설정 (머신별) ───────────────────────────────
+.claude/settings.local.json
